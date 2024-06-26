@@ -1,7 +1,7 @@
 class WasmLoader {
   constructor() {}
 
-  async wasm(path: string): WebAssembly.Exports {
+  async wasm(path) {
     console.info(`Called WasmLoader.wasm`);
     console.info(`Fetching ${path}`);
 
@@ -14,7 +14,7 @@ class WasmLoader {
     return instance.exports;
   }
 
-  async wasmFallback(path: string): WebAssembly.Exports {
+  async wasmFallback(path) {
     console.info(`Called WasmLoader.wasmFallback`);
     console.info(`Using fallback ${path}`);
 
@@ -26,5 +26,3 @@ class WasmLoader {
     return instance.exports;
   }
 }
-
-export default WasmLoader;
