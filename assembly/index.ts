@@ -5,5 +5,9 @@ export function add(a: i32, b: i32): i32 {
 }
 
 export function minusOne(a: i32): i32 {
+  if (a === 44) {
+    abort();
+  }
+
   return a - 1;
 }
