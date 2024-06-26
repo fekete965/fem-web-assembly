@@ -9,7 +9,7 @@
   <script src=/js/loader.js></script>
   <script type="text/javascript">
       const WL = new WasmLoader();
-      WL.wasm('/build/release.wasm')
+      WL.wasm('/wasm/release.wasm')
         .then(instance => {
         const { minusOne } = instance;
 
