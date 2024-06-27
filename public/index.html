@@ -12,10 +12,11 @@
       const WL = new WasmLoader();
       WL.wasm('/wasm/release.wasm')
         .then(instance => {
-          /* Fizzbuzz example code
+          /*
+          //Fizzbuzz example code
           const { fizzbuzz, __getString } = instance;
           // Convert the pointer returned 
-          const str = __getString(fizzbuzz(3))
+          const str = __getString(fizzbuzz(3));
           
           document.write(str);
           */
