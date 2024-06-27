@@ -18,14 +18,11 @@ class WasmLoader {
     console.info(`Called WasmLoader.wasm`);
     console.info(`Fetching ${path}`);
 
-    if (!WebAssembly.instantiateStreaming) {
+    if (!loader.instantiateStreaming) {
       return this.wasmFallback(path, imports);
     }
 
-    const { instance } = await WebAssembly.instantiateStreaming(
-      fetch(path),
-      imports
-    );
+    const instance = await loader.instantiateStreaming(fetch(path), imports);
 
     return instance.exports;
   }
@@ -37,7 +34,7 @@ class WasmLoader {
     const response = await fetch(path);
     const bytes = await response?.arrayBuffer();
 
-    const { instance } = await WebAssembly.instantiate(bytes, imports);
+    const instance = await loader.instantiate(bytes, imports);
 
     return instance.exports;
   }

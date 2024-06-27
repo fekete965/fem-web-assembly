@@ -6,14 +6,19 @@
   <title>Web Assembly</title>
 </head>
 <div id="main"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@assemblyscript/loader/umd/index.js"></script>
   <script src=/js/loader.js></script>
   <script type="text/javascript">
       const WL = new WasmLoader();
       WL.wasm('/wasm/release.wasm')
         .then(instance => {
-        const { minusOne } = instance;
-
-        document.write(minusOne(44));
+          /* Fizzbuzz example code
+          const { fizzbuzz, __getString } = instance;
+          // Convert the pointer returned 
+          const str = __getString(fizzbuzz(3))
+          
+          document.write(str);
+          */
         });
   </script>
 </html>
