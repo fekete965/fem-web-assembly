@@ -36,3 +36,17 @@ store<u8>(1, 99);
 export function readMemory(i: i32): i32 {
   return load<u8>(i);
 }
+
+export function isPrimeWasm(n: i32): bool {
+  if (n < 2) {
+    return false;
+  }
+
+  for (let i: i32 = 2; i < n; i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
+}

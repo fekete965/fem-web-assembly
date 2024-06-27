@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web Assembly</title>
 </head>
-<div id="main"></div>
+<body>
+  <div id="main"></div>
+  <input id="prime-input" type="number" step="any" />
+</body>
   <script src="https://cdn.jsdelivr.net/npm/@assemblyscript/loader/umd/index.js"></script>
   <script src=/js/loader.js></script>
   <script type="text/javascript">
@@ -21,6 +24,7 @@
           document.write(str);
           */
 
+          /*
           // Reading and Writing to memory to/from JS/WASM
           const { readMemory, memory } = instance;
           
@@ -32,6 +36,61 @@
           memoryArray[2] = 42
           
           document.write(readMemory(2))
+          */
+
+          // WASM vs JS performance
+          const { isPrimeWasm } = instance;
+
+          const el = document.getElementById("prime-input")
+
+          el.addEventListener('keyup', () => {
+            console.table(run(el.value))
+          })
+          
+          function isPrimeJS(x) {
+            if (x < 2) {
+              return false;
+            }
+  
+            for (let i = 2; i < x; i++) {
+              if (x % i === 0) {
+                return false;
+              }
+            }
+
+            return true;
+          }
+          
+          function run(n) {
+            const results = []
+
+            for (let i = 0; i < 1000; i++) {
+              const timeStartWasm = performance.now();
+              isPrimeWasm(n);
+              const wasmTime = performance.now() - timeStartWasm;
+
+              const timeStartJS = performance.now();
+              isPrimeJS(n);
+              const jsTime = performance.now() - timeStartJS;
+
+              if (jsTime < wasmTime) {
+                results.push('JavaScript')
+              } else {
+                results.push('WASM')
+              }
+            }
+
+            return results.reduce((acc, item) => {
+              if (item === 'JavaScript') {
+                acc.JavaScript++
+              }
+              if (item === 'WASM') {
+                acc.WASM++
+              }
+
+              return acc
+            }, { JavaScript: 0, WASM: 0 })
+          }
         });
   </script>
 </html>
