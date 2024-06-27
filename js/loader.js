@@ -7,8 +7,8 @@ class WasmLoader {
         },
       },
       index: {
-        log(a) {
-          console.log(a);
+        log(n) {
+          console.log(n);
         },
       },
     };

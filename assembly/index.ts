@@ -6,21 +6,21 @@ export function add(a: i32, b: i32): i32 {
   return a + b;
 }
 
-export function minusOne(a: i32): i32 {
-  log(a);
-  return a - 1;
+export function minusOne(n: i32): i32 {
+  log(n);
+  return n - 1;
 }
 
-export function fizzbuzz(a: i32): String | null {
-  if (a % 15 === 0) {
+export function fizzbuzz(n: i32): String | null {
+  if (n % 15 === 0) {
     return "fizzbuzz";
   }
 
-  if (a % 3 === 0) {
+  if (n % 3 === 0) {
     return "fizz";
   }
 
-  if (a % 5 === 0) {
+  if (n % 5 === 0) {
     return "buzz";
   }
 
