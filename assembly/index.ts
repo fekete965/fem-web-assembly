@@ -26,3 +26,13 @@ export function fizzbuzz(n: i32): String | null {
 
   return null;
 }
+
+// We allocate 2 pages worth of memory -> 2 * 64kb -> 128kb
+memory.grow(2);
+// We write directly to memory now
+store<u8>(0, 21);
+store<u8>(1, 99);
+
+export function readMemory(i: i32): i32 {
+  return load<u8>(i);
+}
